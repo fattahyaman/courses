@@ -6,7 +6,7 @@ const courseDate = document.getElementById("course_date");
 const coursePrice = document.getElementById("course_price");
 // SELECTORS
 
-// API CALL
+// API CALL to  show the data  in dropdown
 fetch("https://private-e05942-courses22.apiary-mock.com/courses")
   .then((response) => response.json())
   .then((data) => {
@@ -21,7 +21,7 @@ function render(course) {
   select.appendChild(opt);
 }
 
-// SELECTION DROPDOWN
+// SELECTION DROPDOWN api change
 selectElement.addEventListener("change", (event) => {
   var url =
     "https://private-e05942-courses22.apiary-mock.com/courses/" +
@@ -35,7 +35,7 @@ selectElement.addEventListener("change", (event) => {
       data.start_dates.forEach((ele) => {
         const p = document.createElement("p");
         p.innerText = ele;
-        coursePrice.appendChild(p);
+        courseDate.appendChild(p);
       });
 
       // TO GET A CURRENT LOCATION
@@ -50,7 +50,7 @@ selectElement.addEventListener("change", (event) => {
       request.onreadystatechange = function () {
         if (this.readyState === 4) {
           // INORDER TO CHANGE PRICE
-          course_price.innerHTML = "";
+          coursePrice.innerHTML = "";
           const p = document.createElement("p");
 
           // TO SET IT AS PER THE REGION
@@ -58,8 +58,7 @@ selectElement.addEventListener("change", (event) => {
             (JSON.parse(this.responseText).continent_name === "Europe" &&
               data.prices[1].amount + " " + data.prices[1].currency) ||
             data.prices[0].amount + " " + data.prices[0].currency;
-
-          course_price.appendChild(p);
+          coursePrice.appendChild(p);
         }
       };
       request.send();

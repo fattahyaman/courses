@@ -1,7 +1,7 @@
 body {
   background-color: #1c7488;
 }
-.cards {
+.container {
   padding-top: 1rem;
   max-width: 310px;
   margin: auto;
